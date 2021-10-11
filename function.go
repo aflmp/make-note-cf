@@ -9,7 +9,7 @@ import (
 
 func isValidReq(r *http.Request) bool {
 	fmt.Fprintf(os.Stdout, "Method: %s; Path: %s; ContentLength: %d\n", r.Method, r.URL.Path, r.ContentLength)
-	if r.Method == http.MethodPost && r.Body != nil && r.ContentLength > 0 {
+	if r.Method == http.MethodPost && r.Body != nil {
 		return true
 	}
 
