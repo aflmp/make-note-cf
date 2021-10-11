@@ -8,6 +8,7 @@ import (
 )
 
 func isValidReq(r *http.Request) bool {
+	fmt.Fprintf(os.Stdout, "Method: %s; Path: %s; ContentLength: %d\n", r.Method, r.URL.Path, r.ContentLength)
 	if r.Method == http.MethodPost && r.Body != nil && r.ContentLength > 0 {
 		return true
 	}
@@ -27,7 +28,7 @@ func MakeNote(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintf(os.Stdout, "method: %s; url: %s; headers: ", r.Method, r.URL.Path)
 	for k, v := range r.Header {
-		fmt.Fprintf(os.Stdout, "%s => %s", k, v)
+		fmt.Fprintf(os.Stdout, "%s => %s\n", k, v)
 	}
 
 	fmt.Fprintf(os.Stdout, "ContentLenght: %d (bytes); Body: ", r.ContentLength)
